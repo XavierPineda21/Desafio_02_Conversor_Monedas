@@ -1,40 +1,42 @@
 package Conversor;
-import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
-
 import javax.swing.JOptionPane;
 
 public class convertirMonedas {
 	//Variables globales
-	private static double monto;
-	private static String divisa;
+	private static double cifra;
+	private static String opConversion;
 
 	//Metodo que muestra los datos que se necesita para hacer la conversión
-	public static void convDinero(String opcion) {
-		
-		//IF para verificar si selecciono está opción
-		if(opcion == "Conversor de monedas") {
-			
+	public static void datosConvertir() {		
 			//Seleccionar la opción de conversión
-			Object divisas = JOptionPane.showInputDialog(null, "Elije la moneda a la que deseas convertir"
+			Object seleccionOpcion = JOptionPane.showInputDialog(null, "Elije la moneda a la que deseas convertir"
 					+ " tu dinero ", "Monedas", JOptionPane.QUESTION_MESSAGE, 
 					null, new Object[] {"De Dólar a Euro", "De Dólar a Libras Esterlinas", 
 							"De Dólar a Yen Japonés", "De Dólar a Won Surcoreano",
 							"De Euro a Dólar", "De Libras Esterlinas a Dólar", "De Yen Japonés a Dólar",
 							"De Won Surcoreano a Dólar"}, "Seleccione");
+			//Sin este if el programa no cierra al presionar "cancelar"
+			if(seleccionOpcion == null) {
+				System.exit(0);
+			}
 			try {
-				double cantidad = Double.parseDouble(JOptionPane.showInputDialog("Ingrese la cantidad"
-						+ "de dinero que deseas convertir:"));
+				String cantidad = JOptionPane.showInputDialog("Ingrese la cantidad"
+						+ "de dinero que deseas convertir:");
+				//Sin este if en esta posición el programa no cierra al presionar "cancelar" en agregar cantidad
+				if(cantidad == null) {
+					System.exit(0);
+				}
 				//Cantidad a convertir
-				monto = cantidad;
+				cifra = Double.parseDouble(cantidad);
 			}
 			catch (Exception e){
+				//Si el espacio esta en blanco o un valor no valido salta  la advertencia y lanza el menu
 				JOptionPane.showMessageDialog(null, "Valor no válido");
-				convDinero(opcion);
-			}		
+				datosConvertir();
+			}
 			//Divisa a convertir
-			divisa = divisas.toString();
-		}
+			opConversion = seleccionOpcion.toString();	
 	}
 	
 	//Metodo que hace la conversión
@@ -45,37 +47,37 @@ public class convertirMonedas {
 		double total = 0;
 		
 		//Switch que contiene todas las conversiones
-		switch(divisa) {
+		switch(opConversion) {
 		case "De Dólar a Euro":
-			total = monto * 0.89;
+			total = cifra * 0.89;
 			JOptionPane.showMessageDialog(null, "Equivale a " + df.format(total) + " Euros");
 			break;
 		case "De Dólar a Libras Esterlinas":
-			total = monto * 0.77;
+			total = cifra * 0.77;
 			JOptionPane.showMessageDialog(null, "Equivale a " + df.format(total) + " Libras Esterlinas");
 			break;
 		case "De Dólar a Yen Japonés":
-			total = monto * 140.09;
+			total = cifra * 140.09;
 			JOptionPane.showMessageDialog(null, "Equivale a " + df.format(total) + " Yen Japonés");
 			break;
 		case "De Dólar a Won Surcoreano":
-			total = monto * 1277.68;
+			total = cifra * 1277.68;
 			JOptionPane.showMessageDialog(null, "Equivale a " + df.format(total) + " Won Surcoreano");
 			break;
 		case "De Euro a Dólar":
-			total = monto * 1.11;
+			total = cifra * 1.11;
 			JOptionPane.showMessageDialog(null, "Equivale a " + df.format(total) + " Dólares");
 			break;
 		case "De Libras Esterlinas a Dólar":
-			total = monto * 1.29;
+			total = cifra * 1.29;
 			JOptionPane.showMessageDialog(null, "Equivale a " + df.format(total) + " Dólares");
 			break;
 		case "De Yen Japonés a Dólar":
-			total = monto * 0.0071;
+			total = cifra * 0.0071;
 			JOptionPane.showMessageDialog(null, "Equivale a " + df.format(total) + " Dólares");
 			break;
 		case "De Won Surcoreano a Dólar":
-			total = monto * 0.00078;
+			total = cifra * 0.00078;
 			JOptionPane.showMessageDialog(null, "Equivale a " + df.format(total) + " Dólares");
 			break;
 		}
