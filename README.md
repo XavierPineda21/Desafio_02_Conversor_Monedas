@@ -5,6 +5,8 @@ Segundo desafío propuesto por Alura y ONE, el cual consiste en un conversor sim
 
 ## Instalación Windows/MAC
 - Descargar y descomprimir el proyecto
+
+![Selection_008](https://github.com/XavierPineda21/Desafio_02_Conversor_Monedas/assets/134019419/289723d1-8b15-4302-ac81-b2ec8374d33e)
 - Doble click en el archivo "Conversor.jar"
   
 ![Selection_003](https://github.com/XavierPineda21/Desafio_02_Conversor_Monedas/assets/134019419/0c323016-37dd-4f43-bc16-00dc00d25db6)
